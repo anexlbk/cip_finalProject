@@ -1,0 +1,5 @@
+gradio
+deepface==0.0.93
+opencv-python-headless
+tf-keras
+numpy
