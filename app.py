@@ -8,6 +8,8 @@ emotion_emoji = {
 }
 
 def detect_emotion(frame):
+    if frame is None:
+        return "Waiting for webcam... 📷"
     try:
         result = DeepFace.analyze(frame, actions=['emotion'], enforce_detection=True)
         dominant = result[0]['dominant_emotion']
@@ -17,10 +19,11 @@ def detect_emotion(frame):
 
 demo = gr.Interface(
     fn=detect_emotion,
-    inputs=gr.Image(sources="webcam", type="numpy"),
+    inputs=gr.Image(sources="webcam", type="numpy", streaming=True),
     outputs="text",
     title="Real-Time Emotion Detector with DeepFace",
-    description="Point your webcam at your face to detect emotions using DeepFace"
+    description="Point your webcam at your face to detect emotions using DeepFace",
+    live=True
 )
 
 demo.launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", 7860)))
