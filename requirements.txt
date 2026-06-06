@@ -1,5 +1,6 @@
 gradio
 deepface==0.0.93
 opencv-python-headless
+tensorflow==2.15.0
 tf-keras
 numpy
